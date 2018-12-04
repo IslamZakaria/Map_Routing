@@ -23,6 +23,8 @@ namespace Map_Routing
             int c = map.MapEdges.Count();
             for (int i = 0; i < c; i++)
             {
+                //it's fun
+                int x = 5;
                 Edge v = map.MapEdges.Dequeue();
                 dataGridView1.Rows.Add(new object[] {v.point1,v.point2, v.speed , v.Length, v.time });
             }
