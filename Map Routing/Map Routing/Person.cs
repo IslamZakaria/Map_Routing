@@ -13,7 +13,7 @@ namespace Map_Routing
     class Person
     {
         public Vertics source, distnation;
-        public int R , speed;
+        public float R , speed;
         public Person()
         {
             source = new Vertics();
@@ -21,12 +21,12 @@ namespace Map_Routing
             this.speed = 5;
             this.R = 0;
         }
-        public Person(Vertics source , Vertics dist , int R)
+        public Person(Vertics source , Vertics dist , float R)
         {
             this.source = source;
             this.distnation = dist;
             this.speed = 5;
-            this.R = R;
+            this.R = R/1000;
         }
     }
 }

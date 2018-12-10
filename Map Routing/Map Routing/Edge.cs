@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,7 +31,18 @@ namespace Map_Routing
         }
         public int CompareTo(Edge E)
         {
-            return 0;
+            if (Math.Abs(this.point1 - this.point2) == Math.Abs(E.point1 - E.point2))
+            { 
+                return 0;
+            }
+            else if (Math.Abs(this.point1 - this.point2) < Math.Abs(E.point1 - E.point2))
+            { 
+                return -1;
+            }
+            else
+            {
+                return 1;
+            }
         }
     }
 }

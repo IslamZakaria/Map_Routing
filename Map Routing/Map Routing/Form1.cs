@@ -11,22 +11,29 @@ namespace Map_Routing
 {
     public partial class homepage : Form
     {
+
+            Graph graph = new Graph("Map_File.txt", "Person.txt");
+        static int i = 0;
         public homepage()
         {
             InitializeComponent();
         }
-
+        
         private void homepage_Load(object sender, EventArgs e)
         {
-            Map map = new Map();
-            map.LoadMap("Map_File.txt");
-            int c = map.MapEdges.Count();
-            for (int i = 0; i < c; i++)
+            dataGridView1.Rows.Clear(); 
+        }
+
+        private void btn_Click(object sender, EventArgs e)
+        {
+            if(i < graph.map.QueryList.Count)
             {
-                //it's fun
-                int x = 5;
-                Edge v = map.MapEdges.Dequeue();
-                dataGridView1.Rows.Add(new object[] {v.point1,v.point2, v.speed , v.Length, v.time });
+
+            DateTime s = DateTime.Now;
+            graph.shortestPath(i);
+            TimeSpan t = DateTime.Now.Subtract(s);
+            dataGridView1.Rows.Add(new object[] { graph.Shortest_Time * 60, graph.Total_Walking_Distance, graph.Total_Roads_Length, t.Milliseconds });
+            i++;
             }
         }
     }

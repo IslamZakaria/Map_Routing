@@ -13,6 +13,24 @@ namespace Map_Routing
         {
             this.data = new List<T>();
         }
+        public PriorityQueue<T> DeepCopy()
+        {
+            PriorityQueue<T> other = (PriorityQueue<T>)this.MemberwiseClone();
+            other.data = new List<T>();
+            foreach (var item in data)
+            {
+                other.data.Add(item);
+            } 
+            return other;
+        }
+        public PriorityQueue(PriorityQueue<T> old)
+        {
+            this.data = new List<T>();
+            for (int i = 0; i < old.data.Count; i++)
+            {
+                this.data.Add(old.data[i]);
+            }
+        }
         public void Enqueue(T item)
         {
             data.Add(item);
@@ -31,8 +49,8 @@ namespace Map_Routing
             }
         }
         public T Dequeue()
-        {
-            // assume priority queue is NOT EMPTY
+        {// assume priority queue is NOT EMPTY
+   
             int last_index = data.Count - 1; 
             T frontItem = data[0];
             data[0] = data[last_index];
@@ -94,8 +112,11 @@ namespace Map_Routing
                 }
             }
             return true;
-        } 
-    
+        }
+        public bool empty()
+        {
+            return this.Count() == 0 ? true : false;
+        }
     }    
 }
 

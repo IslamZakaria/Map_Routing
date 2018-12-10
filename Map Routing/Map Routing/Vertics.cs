@@ -9,19 +9,40 @@ namespace Map_Routing
     class Vertics : IComparable<Vertics>
     {
         public int Number;
-        public float x, y;
+        public float x, y, time;
         public Vertics()
         {
         }
-        public Vertics(int num , float x , float y)
+        public Vertics(float t, int num, float x, float y)
         {
             this.Number = num;
             this.x = x;
             this.y = y;
-        }
-        public int CompareTo(Vertics x)
+            this.time = t;
+        } 
+        public int CompareTo(Vertics V)
         {
-            return this.Number-x.Number;
+            if (this.time == V.time)
+            {
+                return 0;
+            }
+            else if (this.time < V.time)
+            {
+                return -1;
+            }
+            else
+            {
+                return 1;
+            }
         }
+        public Vertics(Vertics v)
+        {
+            this.x = v.x;
+            this.y = v.y;
+            this.Number = v.Number;
+            this.time = v.time;
+        }
+        
+
     }
 }
